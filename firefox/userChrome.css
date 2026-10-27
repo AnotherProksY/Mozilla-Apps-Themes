@@ -1,0 +1,150 @@
+/*
+ * ThinkPad — userChrome.css
+ * Pure black, TrackPoint red. Square corners, like the hardware.
+ *
+ * Requires about:config → toolkit.legacyUserProfileCustomizations.stylesheets = true
+ * Works best on top of the built-in "Dark" theme.
+ */
+
+:root {
+  --tp-black: #000000;
+  --tp-raised: #1a1a1a;
+  --tp-hover: #262626;
+  --tp-active: #333333;
+  --tp-border: #2a2a2a;
+  --tp-text: #e6e6e6;
+  --tp-text-dim: #9a9a9a;
+  --tp-red: #e2231a;
+
+  /* frame; also paints body, which shows through under the vertical tabs sidebar */
+  --toolbox-background-color: var(--tp-black) !important;
+  --toolbox-background-color-inactive: var(--tp-black) !important;
+  --toolbox-text-color: var(--tp-text) !important;
+  --toolbox-text-color-inactive: var(--tp-text-dim) !important;
+  --toolbox-background-gradient: none !important;
+  --lwt-accent-color: var(--tp-black) !important;
+  --lwt-accent-color-inactive: var(--tp-black) !important;
+  --lwt-text-color: var(--tp-text-dim) !important;
+
+  /* toolbar */
+  --toolbar-bgcolor: var(--tp-black) !important;
+  --toolbar-color: var(--tp-text) !important;
+  --toolbarbutton-hover-background: var(--tp-hover) !important;
+  --toolbarbutton-active-background: var(--tp-active) !important;
+  --toolbarbutton-icon-fill-attention: var(--tp-red) !important;
+  --toolbarbutton-border-radius: 2px !important;
+  --chrome-content-separator-color: var(--tp-black) !important;
+
+  /* tabs */
+  --tab-selected-bgcolor: var(--tp-raised) !important;
+  --tab-selected-textcolor: #ffffff !important;
+  --tab-hover-background-color: var(--tp-hover) !important;
+  --tab-loading-fill: var(--tp-red) !important;
+  --tab-border-radius: 0 !important;
+
+  /* url bar */
+  --toolbar-field-background-color: var(--tp-black) !important;
+  --toolbar-field-color: var(--tp-text) !important;
+  --toolbar-field-border-color: var(--tp-border) !important;
+  --toolbar-field-focus-background-color: var(--tp-black) !important;
+  --toolbar-field-focus-color: #ffffff !important;
+  --toolbar-field-focus-border-color: var(--tp-red) !important;
+  --urlbarView-highlight-background: var(--tp-red) !important;
+  --urlbarView-highlight-color: #ffffff !important;
+  --focus-outline-color: var(--tp-red) !important;
+
+  /* panels & menus */
+  --arrowpanel-background: var(--tp-black) !important;
+  --arrowpanel-color: var(--tp-text) !important;
+  --arrowpanel-border-color: var(--tp-border) !important;
+  --arrowpanel-border-radius: 2px !important;
+  --menu-background-color: var(--tp-black) !important;
+  --menu-color: var(--tp-text) !important;
+  --menu-border-color: var(--tp-border) !important;
+  --menuitem-hover-background-color: var(--tp-red) !important;
+
+  /* sidebar */
+  --sidebar-background-color: var(--tp-black) !important;
+  --sidebar-text-color: var(--tp-text) !important;
+  --sidebar-border-color: var(--tp-black) !important;
+}
+
+body,
+#browser,
+#navigator-toolbox,
+#sidebar-container,
+#sidebar-main,
+#sidebar-box {
+  background-color: var(--tp-black) !important;
+}
+
+/* square, flat tabs */
+.tab-background {
+  border-radius: 0 !important;
+  margin-block: 0 !important;
+}
+
+/* red marker on the selected tab: on top for horizontal tabs, on the left for vertical */
+.tabbrowser-tab[selected] .tab-background {
+  box-shadow: inset 0 2px 0 var(--tp-red) !important;
+}
+
+:root[sidebar-expand-on-hover] .tabbrowser-tab[selected] .tab-background,
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab[selected] .tab-background {
+  box-shadow: inset 2px 0 0 var(--tp-red) !important;
+}
+
+.tabbrowser-tab:not([selected]) .tab-label {
+  color: var(--tp-text-dim);
+}
+
+/* url bar: square, red border on focus */
+:root,
+.urlbar,
+#urlbar,
+#searchbar {
+  --urlbar-border-radius: 0px !important;
+  --urlbarview-border-radius: 0px !important;
+  --urlbar-background-border-radius: 0px !important;
+  --urlbar-inner-border-radius: 0px !important;
+}
+
+#urlbar-background,
+.urlbar-background,
+#searchbar,
+#identity-box,
+.identity-box-button,
+#identity-icon-box,
+#tracking-protection-icon-container,
+#urlbar .urlbar-page-action,
+#urlbar .urlbar-icon {
+  border-radius: 0 !important;
+}
+
+/* content area: no rounded corner where the toolbar meets the sidebar */
+#tabbrowser-tabbox,
+#tabbrowser-tabpanels,
+#tabbrowser-tabpanels .browserContainer,
+#tabbrowser-tabpanels .browserStack,
+#tabbrowser-tabpanels browser {
+  --content-area-start-radius: 0px !important;
+  border-radius: 0 !important;
+}
+
+#sidebar-box,
+#sidebar-box #sidebar {
+  --sidebar-box-start-start-radius: 0px !important;
+  --sidebar-box-start-end-radius: 0px !important;
+  border-radius: 0 !important;
+}
+
+#urlbar[focused] > #urlbar-background {
+  outline: 1px solid var(--tp-red) !important;
+  outline-offset: -1px !important;
+}
+
+/* text selection */
+::selection {
+  background-color: var(--tp-red);
+  color: #ffffff;
+}
